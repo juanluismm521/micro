@@ -1,0 +1,12 @@
+{
+  "entradas": [
+    {
+      "fecha": "Aqui deberia ir la fecha",
+      "permitido": "Si"
+    },
+    {
+        "fecha": "Aqui deberia ir la fecha 2",
+        "permitido": "No"
+      }
+  ]
+}
