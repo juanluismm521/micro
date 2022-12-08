@@ -10,10 +10,10 @@ function carga() {
       datos = JSON.parse(this.responseText);
       console.log(datos);
 
-      for (let i = 0; i < datos.length; i++) {
+      for (let i = 1; i < datos.length; i++) {
         var contendor = $("#tbody").html();
         var nuevaFila = "<tr>";
-        nuevaFila += '<th scope="row">4</th>';
+        nuevaFila += '<th scope="row">' + i + '</th>';
         nuevaFila += "<td>" + datos[i].fecha + "</td>";
         nuevaFila += "<td>" + datos[i].permitido + "</td>";
         nuevaFila += "</tr>";

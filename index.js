@@ -42,7 +42,7 @@ app.get("/add/:permitido", function (req, res) {
   }
 });
 
-app.get("/borrar", function (req, res) {
+app.post("/", function (req, res) {
     vaciarData();
     res.status(200).sendFile(__dirname + "/html/index.html");
   });
