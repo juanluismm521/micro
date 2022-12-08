@@ -10,12 +10,12 @@ function carga() {
       datos = JSON.parse(this.responseText);
       console.log(datos);
 
-      for (let i = 0; i < datos.entradas.length; i++) {
+      for (let i = 0; i < datos.length; i++) {
         var contendor = $("#tbody").html();
         var nuevaFila = "<tr>";
         nuevaFila += '<th scope="row">4</th>';
-        nuevaFila += "<td>" + ahora() + "</td>";
-        nuevaFila += "<td>" + datos.entradas[i].fecha + "</td>";
+        nuevaFila += "<td>" + datos[i].fecha + "</td>";
+        nuevaFila += "<td>" + datos[i].permitido + "</td>";
         nuevaFila += "</tr>";
         $(nuevaFila).appendTo("#tbody");
       }
@@ -24,10 +24,13 @@ function carga() {
 }
 
 function ahora() {
-  var hoy = new Date();
-  var fecha =
-    hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
-  var hora = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
-  var fechaYHora = fecha + " " + hora;
-  return fechaYHora;
-}
+    var hoy = new Date();
+    var fecha =
+      hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+    var hora = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
+    var fechaYHora = fecha + " " + hora;
+    return fechaYHora;
+  }
+
+
+  module.exports.ahora = ahora;
