@@ -1,12 +1,1 @@
-{
-  "entradas": [
-    {
-      "fecha": "Aqui deberia ir la fecha",
-      "permitido": "Si"
-    },
-    {
-        "fecha": "Aqui deberia ir la fecha 2",
-        "permitido": "No"
-      }
-  ]
-}
+[{"fecha":"Aqui deberia ir la fecha","permitido":"Si"},{"fecha":"Aqui deberia ir la fecha 2","permitido":"No"},{"fecha":"8-12-2022 23:24:6","permitido":"Prueba 1"},{"fecha":"8-12-2022 23:25:56","permitido":"Prueba 1"},{"fecha":"8-12-2022 23:25:57","permitido":"Prueba 1"},{"fecha":"8-12-2022 23:25:58","permitido":"Prueba 1"},{"fecha":"8-12-2022 23:28:18","permitido":"No permitido"},{"fecha":"8-12-2022 23:28:23","permitido":"Permitido"}]
