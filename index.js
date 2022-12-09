@@ -49,6 +49,7 @@ app.post("/", function (req, res) {
 
 app.listen(PORT);
 console.log(`Server iniciado en el puerto ${PORT}`);
+module.exports = app;
 
 function addData(dato) {
   const entrada = {
