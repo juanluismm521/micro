@@ -24,6 +24,7 @@ app.get("/hola", function (req, res) {
 
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/html/index.html");
+  console.log("Se ha conectado alguien " + req.ip);
 });
 
 app.get("/add/:permitido", function (req, res) {
@@ -42,7 +43,12 @@ app.get("/add/:permitido", function (req, res) {
   }
 });
 
-app.post("/", function (req, res) {
+app.get("/borrar", function (req, res) {
+  vaciarData();
+  res.status(200).sendFile(__dirname + "/html/index.html");
+});
+
+app.post("/borrar", function (req, res) {
     vaciarData();
     res.status(200).sendFile(__dirname + "/html/index.html");
   });
@@ -69,5 +75,8 @@ function addData(dato) {
 }
 
 function vaciarData(){
+  
+
     fs.createReadStream('./data/vacio.json').pipe(fs.createWriteStream('./data/data.json'));
+    while(data.length > 0) data.pop();
 }
