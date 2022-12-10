@@ -1,3 +1,4 @@
+
 function carga() {
   let datos;
   const xhttp = new XMLHttpRequest();

@@ -3,9 +3,13 @@ const path = require("path");
 const fs = require("fs");
 const front = require("./js/front.js");
 var data = require("./data/data.json");
+const bodyParser = require('body-parser');
+
 
 const PORT = 80;
 const app = express();
+
+const PASS_BORRADO = "1234a"
 
 app.use(
   "/css",
@@ -17,6 +21,8 @@ app.use(
 );
 app.use("/js", express.static(path.join(__dirname + "/js")));
 app.use("/data", express.static(path.join(__dirname + "/data")));
+app.use( bodyParser.urlencoded({ extended: true }) );
+app.use( bodyParser.json() );
 
 app.get("/hola", function (req, res) {
   res.send("Hola!");
@@ -30,8 +36,8 @@ app.get("/", function (req, res) {
 app.get("/add/:permitido", function (req, res) {
   switch (req.params.permitido) {
     case "0":
-        addData("No permitido");
-        res.status(200).sendFile(__dirname + "/html/index.html");
+      addData("No permitido");
+      res.status(200).sendFile(__dirname + "/html/index.html");
       break;
     case "1":
       addData("Permitido");
@@ -44,14 +50,20 @@ app.get("/add/:permitido", function (req, res) {
 });
 
 app.get("/borrar", function (req, res) {
-  vaciarData();
-  res.status(200).sendFile(__dirname + "/html/index.html");
+  res.sendFile(__dirname + "/html/borrar.html");
 });
 
-app.post("/borrar", function (req, res) {
-    vaciarData();
-    res.status(200).sendFile(__dirname + "/html/index.html");
-  });
+app.post("/borrar/confirm", function (req, res) {
+  console.log("Peticion post borrar procesada");
+  
+  if(req.body.pass === PASS_BORRADO){
+  vaciarData();
+  res.status(200).sendFile(__dirname + "/html/index.html");
+  }else{
+    res.status(401).send("Contraseña incorrecta");
+  }
+  
+});
 
 app.listen(PORT);
 console.log(`Server iniciado en el puerto ${PORT}`);
@@ -64,19 +76,19 @@ function addData(dato) {
   };
 
   data.push(entrada);
-
   fs.writeFile("./data/data.json", JSON.stringify(data), (err) => {
     if (err) {
-      console.log("Error writing file", err);
+      console.log("Error al añadir una nueva entrada", err);
     } else {
-      console.log("Successfully wrote file");
+      console.log("Se ha añadido una nueva entrada");
     }
   });
 }
 
-function vaciarData(){
-  
-
-    fs.createReadStream('./data/vacio.json').pipe(fs.createWriteStream('./data/data.json'));
-    while(data.length > 0) data.pop();
+function vaciarData() {
+  fs.createReadStream("./data/vacio.json").pipe(
+    fs.createWriteStream("./data/data.json")
+  );
+  while (data.length > 0) data.pop();
 }
+
