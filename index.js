@@ -43,10 +43,18 @@ app.get("/add/:permitido", function (req, res) {
       addData("Permitido");
       res.status(200).sendFile(__dirname + "/html/index.html");
       break;
+    case "2":
+      addData("Intruso");
+      res.status(200).sendFile(__dirname + "/html/index.html");
+      break;
     default:
       res.status(400).sendFile(__dirname + "/html/not_found.html");
       break;
   }
+});
+
+app.use(function (req, res) {
+  res.status(400).sendFile(__dirname + "/html/not_found.html");
 });
 
 app.get("/borrar", function (req, res) {
