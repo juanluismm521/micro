@@ -53,9 +53,6 @@ app.get("/add/:permitido", function (req, res) {
   }
 });
 
-app.use(function (req, res) {
-  res.status(400).sendFile(__dirname + "/html/not_found.html");
-});
 
 app.get("/borrar", function (req, res) {
   res.sendFile(__dirname + "/html/borrar.html");
@@ -71,6 +68,11 @@ app.post("/borrar/confirm", function (req, res) {
     res.status(401).send("Contraseña incorrecta");
   }
   
+});
+
+
+app.use(function (req, res) {
+  res.status(400).sendFile(__dirname + "/html/not_found.html");
 });
 
 app.listen(PORT);
